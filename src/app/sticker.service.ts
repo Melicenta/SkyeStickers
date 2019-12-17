@@ -22,7 +22,7 @@ export class StickerService {
     private messageService: MessageService) { }
 
 
-  getStickers (): Observable<Sticker[]> {
+  getStickers(): Observable<Sticker[]> {
     return this.http.get<Sticker[]>(this.stickersUrl)
       .pipe(
         tap(_ => this.log('fetched stickers')),
@@ -67,14 +67,14 @@ export class StickerService {
 
   //////// Save methods //////////
 
-  addSticker (sticker: Sticker): Observable<Sticker> {
+  addSticker(sticker: Sticker): Observable<Sticker> {
     return this.http.post<Sticker>(this.stickersUrl, sticker, this.httpOptions).pipe(
-      tap((newSticker: Sticker) => this.log(`added hero w/ id=${newSticker.id}`)),
+      tap((newSticker: Sticker) => this.log(`added sticker w/ id=${newSticker.id}`)),
       catchError(this.handleError<Sticker>('addSticker'))
     );
   }
 
-  deleteSticker (sticker: Sticker | number): Observable<Sticker> {
+  deleteSticker(sticker: Sticker | number): Observable<Sticker> {
     const id = typeof sticker === 'number' ? sticker : sticker.id;
     const url = `${this.stickersUrl}/${id}`;
 
@@ -84,7 +84,7 @@ export class StickerService {
     );
   }
 
-  updateSticker (sticker: Sticker): Observable<any> {
+  updateSticker(sticker: Sticker): Observable<any> {
     return this.http.put(this.stickersUrl, sticker, this.httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${sticker.id}`)),
       catchError(this.handleError<any>('updateSticker'))
@@ -97,7 +97,7 @@ export class StickerService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
