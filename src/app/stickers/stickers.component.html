@@ -1,7 +1,32 @@
 <div class="p-section">
-  <div *ngFor="let sticker of stickers">
-    <p class="text h">{{sticker.name}}</p>
-    <p class="text">{{sticker.content}}</p>
+  <div class="content">
+    <div class="select">
+      <label>
+        Sticker name* :
+        <input class="form-field-input" #stickerName />
+      </label>
+      <label>
+        Sticker content* :
+        <input class="form-field-input" #stickerContent/>
+      </label>
+      <ul>
+        <li class="ruby checked">
+          <a  (click)="add(stickerName.value,stickerContent.value); stickerName.value=''; stickerContent.value=''">Add</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="p-section">
+  <div class="flex-table">
+    <div class="row" *ngFor="let sticker of stickers">
+      <div class="row-item small">
+        {{sticker.name}}
+      </div>
+      <div class="row-item fixed">
+        <div class="sticker">{{sticker.content}}</div>
+      </div>
+    </div>
   </div>
 </div>
 
