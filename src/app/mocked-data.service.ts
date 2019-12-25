@@ -8,13 +8,10 @@ import { Injectable } from '@angular/core';
 export class MockedDataService implements InMemoryDbService {
   createDb() {
     const stickers = [
-      {id: 1, name: 'LifeIsFor', content: 'Life is for sharing…'},
-      {id: 2, name: 'KakVMobile', content: 'Сделайте как в мобайле'},
-      {id: 3, name: 'MatIGif', content: '- А то в чатиках мат и гифки  - Ничего лишнего'},
-      {id: 4, name: 'FE', content: 'Ля мсье фронтендье'},
-      {id: 5, name: 'NoCapacity', content: 'Нет капасити думать'},
-      {id: 6, name: 'HomeVideo', content: 'Название нашего хоум видео'},
-      {id: 7, name: 'FromAuthors', content: 'От содателей КЛС, ВО и продакт импорта'},
+      {id: 1, name: 'FE', content: 'Ля мсье фронтендье'},
+      {id: 2, name: 'NoCapacity', content: 'Нет капасити думать'},
+      {id: 3, name: 'HomeVideo', content: 'Название нашего хоум видео'},
+      {id: 4, name: 'FromAuthors', content: 'От содателей КЛС, ВО и продакт импорта'},
     ];
     return {stickers};
   }

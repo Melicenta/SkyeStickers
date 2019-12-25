@@ -24,7 +24,16 @@
         {{sticker.name}}
       </div>
       <div class="row-item fixed">
-        <div class="sticker">{{sticker.content}}</div>
+        <div class="sticker" id="{{sticker.id}}">{{sticker.content}}</div>
+      </div>
+      <div class="row-item small">
+        <div class="select">
+          <ul>
+            <li class="ruby checked">
+              <a  (click)="convert(sticker.id)">Convert</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
