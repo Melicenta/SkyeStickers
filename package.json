@@ -1,6 +1,9 @@
 {
   "name": "skye-stikers",
   "version": "0.0.1",
+  "engines": {
+    "node": "12.13.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
