@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
@@ -8,7 +8,9 @@ import {Sticker} from './stickers/sticker.component';
 import MessageService from './message.service';
 
 
-// @Injectable({ providedIn: 'root' })
+@NgModule({
+  providers: [StickerService]
+})
 export class StickerService {
 
   private stickersUrl = 'api/stickers';  // URL to web api

@@ -1,9 +1,9 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Sticker } from './stickers/sticker.component';
-import { Injectable } from '@angular/core';
+import { NgModule } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root',
+@NgModule({
+  providers: [MockedDataService],
 })
 export class MockedDataService implements InMemoryDbService {
   createDb() {

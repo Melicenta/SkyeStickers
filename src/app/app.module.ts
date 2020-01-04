@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {MockedDataService} from './mocked-data.service';
+import {StickerService} from './sticker.service';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {StickersComponent} from './stickers/stickers.component';
@@ -24,7 +25,7 @@ import {StickersComponent} from './stickers/stickers.component';
       MockedDataService, { dataEncapsulation: false }
     )
   ],
-  providers: [],
+  providers: [StickerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
