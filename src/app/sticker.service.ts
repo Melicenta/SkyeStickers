@@ -5,7 +5,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import {Sticker} from './stickers/sticker.component';
-import MessageService from './message.service';
 
 
 @NgModule({
@@ -20,14 +19,13 @@ export class StickerService {
   };
 
   constructor(
-    private http: HttpClient,
-    private messageService: MessageService) { }
+    private http: HttpClient) { }
 
 
   getStickers(): Observable<Sticker[]> {
     return this.http.get<Sticker[]>(this.stickersUrl)
       .pipe(
-        tap(_ => this.log('fetched stickers')),
+        tap(_ => console.log('fetched stickers')),
         catchError(this.handleError<Sticker[]>('getStickers', []))
       );
   }
@@ -40,7 +38,7 @@ export class StickerService {
         map(stickers => stickers[0]), // returns a {0|1} element array
         tap(h => {
           const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} sticker id=${id}`);
+          console.log(`${outcome} sticker id=${id}`);
         }),
         catchError(this.handleError<Sticker>(`getSticker id=${id}`))
       );
@@ -50,7 +48,7 @@ export class StickerService {
   getSticker(id: number): Observable<Sticker> {
     const url = `${this.stickersUrl}/${id}`;
     return this.http.get<Sticker>(url).pipe(
-      tap(_ => this.log(`fetched sticker id=${id}`)),
+      tap(_ => console.log(`fetched sticker id=${id}`)),
       catchError(this.handleError<Sticker>(`getSticker id=${id}`))
     );
   }
@@ -62,7 +60,7 @@ export class StickerService {
       return of([]);
     }
     return this.http.get<Sticker[]>(`${this.stickersUrl}/?name=${term}`).pipe(
-      tap(_ => this.log(`found heroes matching "${term}"`)),
+      tap(_ => console.log(`found heroes matching "${term}"`)),
       catchError(this.handleError<Sticker[]>('searchStickers', []))
     );
   }
@@ -71,7 +69,7 @@ export class StickerService {
 
   addSticker(sticker: Sticker): Observable<Sticker> {
     return this.http.post<Sticker>(this.stickersUrl, sticker, this.httpOptions).pipe(
-      tap((newSticker: Sticker) => this.log(`added sticker w/ id=${newSticker.id}`)),
+      tap((newSticker: Sticker) => console.log(`added sticker w/ id=${newSticker.id}`)),
       catchError(this.handleError<Sticker>('addSticker'))
     );
   }
@@ -81,14 +79,14 @@ export class StickerService {
     const url = `${this.stickersUrl}/${id}`;
 
     return this.http.delete<Sticker>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted hero id=${id}`)),
+      tap(_ => console.log(`deleted hero id=${id}`)),
       catchError(this.handleError<Sticker>('deleteSticker'))
     );
   }
 
   updateSticker(sticker: Sticker): Observable<any> {
     return this.http.put(this.stickersUrl, sticker, this.httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${sticker.id}`)),
+      tap(_ => console.log(`updated hero id=${sticker.id}`)),
       catchError(this.handleError<any>('updateSticker'))
     );
   }
@@ -104,16 +102,8 @@ export class StickerService {
 
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
-  }
-
-  private log(message: string) {
-    this.messageService.add(`StickerService: ${message}`);
   }
 }
