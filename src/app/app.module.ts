@@ -7,11 +7,13 @@ import {StickerService} from './sticker.service';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {StickersComponent} from './stickers/stickers.component';
+import {AddNewFormComponent} from './addNewForm/addNewForm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StickersComponent,
+    AddNewFormComponent
   ],
   imports: [
     BrowserModule,

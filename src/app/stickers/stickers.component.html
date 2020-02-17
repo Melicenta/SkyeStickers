@@ -1,23 +1,4 @@
 <div class="p-section">
-  <div class="content">
-    <div class="select">
-      <label>
-        Sticker name* :
-        <input class="form-field-input" #stickerName />
-      </label>
-      <label>
-        Sticker content* :
-        <input class="form-field-input" #stickerContent/>
-      </label>
-      <ul>
-        <li class="ruby checked">
-          <a  (click)="add(stickerName.value,stickerContent.value); stickerName.value=''; stickerContent.value=''">Add</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<div class="p-section">
   <div class="flex-table">
     <div class="row" *ngFor="let sticker of stickers">
       <div class="row-item small">
@@ -30,7 +11,7 @@
         <div class="select">
           <ul>
             <li class="ruby checked">
-              <a  (click)="convert(sticker.id)">Convert</a>
+              <a (click)="convert(sticker.id, sticker.name)">Convert</a>
             </li>
           </ul>
         </div>
