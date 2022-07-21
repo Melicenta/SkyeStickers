@@ -10,7 +10,6 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
         }
       },
       "architect": {
@@ -29,8 +28,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -139,7 +137,6 @@
   "defaultProject": "SkyeStikers",
   "schematics": {
     "@schematics/angular:component": {
-      "styleext": "scss"
     }
   }
 }
