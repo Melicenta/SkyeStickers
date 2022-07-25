@@ -444,38 +444,39 @@ svg {
 }
 }
 
-.expander.expanded{
-.expander-header{
-  border-bottom: 1px solid #E4E4E4;
+  .expander.expanded{
+  .expander-header{
+    border-bottom: 1px solid #E4E4E4;
 
-.expander-title{
-  color: #7F8F96;
-}
+  .expander-title{
+    color: #7F8F96;
+  }
 
-.expander-title:before{
-  content: '\24E5';
-  position: absolute;
-  width: 25px;
-  height: 30px;
-  font-size: 17pt;
-  left: -32px;
-  top: -3px;
-  color: #7F8F96;
-  /* background: url(../images/folder.png) no-repeat center center; */
-  background-color: inherit;
-  -ms-transform: rotate(0deg);
-  -webkit-transform: rotate(0deg);
-  transform: rotate(0deg);
+  .expander-title:before{
+    content: '\24E5';
+    position: absolute;
+    width: 25px;
+    height: 30px;
+    font-size: 17pt;
+    left: -32px;
+    top: -3px;
+    color: #7F8F96;
+    /* background: url(../images/folder.png) no-repeat center center; */
+    background-color: inherit;
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  }
+  .expander-content{
+    height: 100%;
+    opacity: 1;
+    padding: 5px;
+  }
+  }
 }
-}
-.expander-content{
-  height: 100%;
-  opacity: 1;
-  padding: 5px;
-}
-}
-}
-.expander-container .animated .expander-title:before, .expander-container .expanded.animated .expander-title:before {
+.expander-container .animated .expander-title:before,
+.expander-container .expanded.animated .expander-title:before {
   transition: transform .5s linear;
 }
 
@@ -487,13 +488,13 @@ svg {
 
 .svg {
   text-align: right;
-svg {
-  height: 200px;
-g {
-  stroke: #444;
-  fill: #F5F5F5;
-}
-}
+  svg {
+    height: 200px;
+    g {
+      stroke: #444;
+      fill: #F5F5F5;
+    }
+  }
 }
 
 /*table*/
@@ -534,6 +535,7 @@ tbody tr:hover {
   white-space: nowrap;
   line-height: 27px;
   user-select: none;
+  display: block;
 }
 
 .select.single li.checked a {

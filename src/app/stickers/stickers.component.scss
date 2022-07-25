@@ -24,33 +24,60 @@
   animation-duration: 5s;
 }
 
+.form {
+  display: flex;
+  align-items: self-start;
+  margin-top: 12px;
+
+  &:last-of-type {
+    justify-content: end;
+  }
+
+  &__item {
+    padding: 0 4px;
+    width: 33%;
+
+    @media screen and (max-width: 1024px){
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+
+  @media screen and (max-width: 1024px){
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 .form-field-input {
-  padding: 2pt;
+  padding: 5pt;
   margin: 5pt 10pt;
   box-shadow: 0 0 2px 0 #967a96;
   border: 0;
+}
+
+.form-field-label {
+  color: #695d5d;
+  margin-left: 10pt;
+  display: block;
 }
 /*content-description*/
 
 /*selector*/
 .select {
-  display: inline-table;
-  padding: 0;
-  margin: 0 6px;
-  background-color: transparent;
 
   ul {
     list-style-type: none;
-    display: inline-table;
+    display: flex;
     padding: 0;
     margin: 0;
     box-shadow: 0 0 2px #B5ADBB;
     border-radius: 2px;
+    align-items: baseline;
 
     li {
       padding: 0;
       margin: 0;
-      display: table-cell;
       text-align: center;
 
       a {
@@ -64,6 +91,12 @@
         color: #646464;
         box-shadow: inset 0 0 1px #646464;
         transition: color 0.3s linear;
+      }
+
+      &:last-child {
+        align-self: flex-end;
+        margin-bottom: 6px;
+        margin-right: 12px;
       }
     }
     li.checked {
@@ -83,7 +116,7 @@
 }
 /*buttons*/
 .button {
-  padding: 10px;
+  padding: 3px 6px;
   border-radius: 2px;
   box-shadow: 0 0 3px #967a96;
   cursor: pointer;
@@ -91,10 +124,20 @@
   white-space: nowrap;
   line-height: 27px;
   user-select: none;
+  display: block;
+  text-align: center;
+  height: 30px;
+  min-width: 50px;
+
+  a {
+    display: block;
+    width: 100%;
+  }
 }
 
 /*flex-tables*/
 .flex-table {
+  width: 100%;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
@@ -106,12 +149,6 @@
 .flex-table-header {
   display: none;
 }
-@media (min-width: 500px) {
-  .flex-table-header {
-    font-weight: 700;
-    background-color: #f2f2f2;
-  }
-}
 .flex-table .row {
   width: 100%;
 }
@@ -119,9 +156,9 @@
   background-color: #f2f2f2;
 }
 .flex-table .row:nth-of-type(odd) {
-  background-color: #ffffff;
+  background-color: #fcfcfc;
 }
-@media (min-width: 500px) {
+@media screen and (min-width: 1024px) {
   .flex-table .row {
     display: flex;
     flex-flow: row nowrap;
@@ -140,37 +177,65 @@
   flex-basis: auto;
   padding: 0.5em;
 
-  @media (min-width: 500px) {
-    border: 1px solid #ffffff;
+  @media screen and (min-width: 1024px) {
+    border: 1px solid #eeecec;
     padding: 0.5em;
   }
 }
 
 .sticker {
+  position: relative;
   color: #E20074;
-  background: url(../../img/island.jpg) no-repeat 1% 68%;;
+  //background: url(../../img/island.jpg) no-repeat 1% 68%;
   width: 412px;
-  padding: 1em;
+  height: 212px;
+  padding: 1px;
   line-height: 57px;
   font-size: 50px;
   text-overflow: initial;
   text-align: center;
   vertical-align: middle;
+
+  &__background {
+    height: 100%;
+  }
+
+  &__background-img {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 512px;
+    max-height: 214px;
+    margin: auto;
+  }
+
+  &__content {
+    position: absolute;
+    z-index: 2;
+    padding: 6px;
+    height: inherit;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .flex-table .row-item.small {
-  width: 10%;
-  @media (max-width: 800px) and (min-width: 300px) {
+  width: 30%;
+  @media screen and (max-width: 1024px) and (min-width: 300px) {
     width: 45%;
   }
-  @media (max-width: 299px) {
+  @media screen and (max-width: 299px) {
     display: none;
   }
 }
 
 .flex-table .row-item.fixed {
   width: 512px;
-  @media (max-width: 800px) and (min-width: 300px) {
+  @media screen and (max-width: 800px) and (min-width: 300px) {
     width: 45%;
   }
 }
@@ -184,23 +249,54 @@
   color: #DDDBF7;
 }
 
-.cyan{
+.cyan {
   background-color: rgba(101, 162, 188, 0.99);
   color: #AFE5FD;
 }
 
-.gold{
+.gold {
   background-color: rgba(197, 174, 0, 0.65);
   color: #FFF49E;
 }
 
-.silver{
+.silver {
   background-color: rgba(247, 247, 247, 0.85);
   color: #B2B2C1;
 }
 
-.ruby{
+.ruby {
   background-color: rgba(177, 65, 65, 0.85);
   color: #FD9090;
 }
+
+.text-white {
+  color: #FFFFFF;
+}
 /*colours*/
+
+.color-picker {
+  border: 2px solid transparent;
+  border-radius: 25px;
+  box-shadow: 3px 1px 8px 0 #967a96;
+  width: 46px;
+  height: 46px;
+  cursor: pointer;
+  margin: 0 auto;
+  display: block;
+
+  @media screen and (max-width: 1024px){
+    margin: 0 0 0 10pt;
+  }
+}
+
+/*utility*/
+.item-f-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-border {
+  border: none;
+  box-shadow: none;
+}
