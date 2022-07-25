@@ -1,33 +1,76 @@
+<!--suppress AngularUndefinedBinding -->
 <div class="p-section">
   <div class="content">
     <div class="form">
-      <div class="form--item">
-        <label>
+      <div class="form__item">
+        <label class="form-field-label" for="stickerName">
           Sticker name* :
-          <input class="form-field-input" #stickerName />
         </label>
+        <input class="form-field-input" #stickerName
+        id="stickerName"
+        name="stickerName"/>
       </div>
-      <div class="form--item">
-        <label>
+      <div class="form__item" for="stickerContent">
+        <label class="form-field-label">
           Sticker content* :
-          <input class="form-field-input" #stickerContent/>
         </label>
+        <textarea class="form-field-input" #stickerContent
+                  maxlength="50"
+        id="stickerContent"
+        name="stickerContent"></textarea>
       </div>
-      <div class="form--item">
-        <label>
-          Sticker background* :
-          <input type="file" (change)="onFileUpload($event)"
-                 class="form-field-input" #stickerBackground/>
+      <div class="form__item">
+        <label class="form-field-label" for="stickerBg">
+          Sticker background :
         </label>
+        <input type="file" (change)="onFileUpload($event)"
+               #stickerBackground
+               id="stickerBg"
+               name="stickerBg"
+               class="form-field-input no-border"/>
       </div>
-      <div class="form--item">
+    </div>
+    <div class="form">
+      <div class="form__item">
+        <label class="form-field-label" for="stickerTextColour">
+          Sticker text colour:
+        </label>
+        <input class="form-field-input" type="text" #stickerTextColour
+               id="stickerTextColour"
+               name="stickerTextColour"/>
+      </div>
+      <div class="form__item">
+        <label class="form-field-label" for="stickerBGColour">
+          Sticker background colour:
+        </label>
+        <input class="form-field-input" type="text" #stickerBGColour
+               id="stickerBGColour"
+               name="stickerBGColour"/>
+      </div>
+      <div class="form__item">
+        <input class="color-picker"
+               [(colorPicker)]="color"
+               [style.background]="color"
+               id="colorPicker"
+               name="colorPicker"
+               title="Click and copy chosen"
+        />
+      </div>
+    </div>
+    <div class="form">
+      <div class="form__item">
         <span class="button ruby text-white">
             <a  (click)="add(
             stickerName.value,
             stickerContent.value,
-            stickerBackground.value
-            ); stickerName.value='';
-            stickerContent.value=''">Add</a>
+            stickerTextColour.value,
+            stickerBGColour.value
+            );
+            stickerName.value='';
+            stickerContent.value='';
+            stickerTextColour.value = '';
+            stickerBGColour.value = '';
+            stickerBackground.value = '';">Add</a>
         </span>
       </div>
     </div>
@@ -41,20 +84,32 @@
         {{sticker.name}}
       </div>
       <div class="row-item fixed">
-        <div class="sticker" id="{{sticker.id}}">{{sticker.content}}</div>
+        <!--suppress AngularUndefinedBinding -->
+        <div class="sticker">
+          <div class="sticker__background" [ngStyle]="{'background-color': ''+sticker?.bgColour + ''}">
+            <div class="sticker__background-img" id="{{sticker.id}}"
+                 [ngStyle]="{'background':'url('+ sticker?.background +') no-repeat 1% 68% border-box'}">
+              <div class="sticker__content"
+                   [ngStyle]="{'color': '' + sticker?.textColour + ''}"
+              >{{sticker.content}}</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="row-item small">
-        <div class="select">
-          <ul>
-            <li class="ruby checked">
+        <span class="button ruby text-white">
               <a (click)="convert({
               content: sticker.content,
               name: sticker.name,
-              background: sticker.background
+              background: sticker.background || '',
+              id: sticker.id
               })">Convert</a>
-            </li>
-          </ul>
-        </div>
+        </span>
+<!--        <span class="button">-->
+<!--          <a (click)="edit()">-->
+<!--            Edit-->
+<!--          </a>-->
+<!--        </span>-->
       </div>
     </div>
   </div>

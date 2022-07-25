@@ -9,7 +9,7 @@ import {ConversionService} from '../conversion.service';
   styleUrls: ['./stickers.component.scss']
 })
 export class StickersComponent implements OnInit {
-  newStickers: Sticker[];
+  example: Sticker;
 
   constructor(private stickerService: StickerService,
               private conversionService: ConversionService) { }
@@ -20,12 +20,7 @@ export class StickersComponent implements OnInit {
 
   getStickers(): void {
     this.stickerService.getStickers()
-      .subscribe(stickers => this.newStickers = stickers);
-  }
-
-  delete(sticker: Sticker): void {
-    this.newStickers = this.newStickers.filter(s => s !== sticker);
-    this.stickerService.deleteSticker(sticker).subscribe();
+      .subscribe(stickers => this.example = stickers[0]);
   }
 
   convert(sticker: Sticker): void {

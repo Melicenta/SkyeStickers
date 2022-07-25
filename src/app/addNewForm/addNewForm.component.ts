@@ -13,9 +13,13 @@ import {ConversionService} from '../conversion.service';
 export class AddNewFormComponent implements OnInit{
   stickers: Sticker[];
   sticker: Sticker;
+  file: string | ArrayBuffer;
+  color: string
 
   constructor(private stickerService: StickerService,
-              private conversionService: ConversionService) { }
+              private conversionService: ConversionService) {
+    this.color = '#e20074'
+  }
 
   ngOnInit() {
     this.getStickers();
@@ -23,30 +27,39 @@ export class AddNewFormComponent implements OnInit{
 
   getStickers(): void {
     this.stickerService.getStickers()
-      .subscribe(stickers => this.stickers = stickers);
+      .subscribe(stickers => this.stickers = stickers
+        .sort((a,b)=> b.id - a.id));
   }
 
-  add(name: string, content: string, background: string | ArrayBuffer): void {
+  add(name: string, content: string, textColour?: string, bgColour?: string): void {
     const _name = name.trim();
 
     if (!name) { return; }
     this.stickerService
-      .addSticker({ name:_name, content, background } as Sticker)
+      .addSticker({ name:_name, content, background: this.file, bgColour, textColour } as Sticker)
       .subscribe(stickerItem => {
         this.stickers.push(stickerItem);
       });
     this.getStickers()
   }
 
+  edit(name: string, content, bgColour, textColour): void {
+    this.stickerService
+      .updateSticker({name, content,textColour,bgColour} as Sticker)
+      .subscribe( stickerItem => {
+        console.log('successfully updated', stickerItem)
+        this.getStickers()
+      })
+  }
+
   onFileUpload(event: any):void {
       const file = event.target.files[0];
       const reader = new FileReader();
-      let res: string | ArrayBuffer = ''
 
       reader.readAsDataURL(file);
 
       reader.onloadend = ()=>{
-        res = reader.result
+        this.file = reader.result
       }
   }
 

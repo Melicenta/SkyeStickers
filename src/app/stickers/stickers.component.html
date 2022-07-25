@@ -1,30 +1,32 @@
+<!--suppress ALL -->
 <div class="p-section">
   <div class="flex-table">
-    <div class="row" *ngFor="let sticker of newStickers">
+    <div class="row" >
       <div class="row-item small">
-        {{sticker.name}}
+        {{example.name}}
       </div>
       <div class="row-item fixed">
         <!--suppress AngularUndefinedBinding -->
-        <div class="sticker" id="{{sticker.id}}"
-             [ngStyle]="{'background': 'url('+ sticker.background +') no-repeat 1% 68%'}">
-<!--          <img class="sticker&#45;&#45;background" src="{{sticker.background}}"/>-->
-          <div class="sticker--content">{{sticker.content}}</div>
+        <div class="sticker">
+          <div class="sticker__background" [ngStyle]="{'background-color': ''+example?.bgColour + ''}">
+            <div class="sticker__background-img" id="{{example.id}}"
+                 [ngStyle]="{'background':'url('+ example?.background +') no-repeat 1% 68% border-box'}">
+              <div class="sticker__content"
+                   [ngStyle]="{'color': '' + example?.textColour + ''}"
+              >{{example.content}}</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row-item small">
-        <div class="select">
-          <ul>
-            <li class="ruby checked">
-              <a (click)="convert({
-              id:sticker.id,
-              name:sticker.name,
-              content:sticker.content,
-              background:sticker.background
+        <span class="button ruby text-white">
+            <a (click)="convert({
+              id:example.id,
+              name:example.name,
+              content:example.content,
+              background:example.background
               })">Convert</a>
-            </li>
-          </ul>
-        </div>
+        </span>
       </div>
     </div>
   </div>

@@ -25,7 +25,7 @@ export class StickerService {
   getStickers(): Observable<Sticker[]> {
     return this.http.get<Sticker[]>(this.stickersUrl)
       .pipe(
-        tap(_ => console.log('fetched stickers',_)),
+        // tap(_ => console.log('fetched stickers',_)),
         catchError(this.handleError<Sticker[]>('getStickers', []))
       );
   }

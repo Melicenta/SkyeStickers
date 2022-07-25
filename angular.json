@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SkyeStikers": {
+    "SkyeStickers": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -16,7 +16,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/SkyeStikers",
+            "outputPath": "dist/SkyeStickers",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -40,7 +40,7 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
@@ -54,24 +54,44 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "SkyeStikers:build"
+            "browserTarget": "SkyeStickers:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "SkyeStikers:build:production"
+              "browserTarget": "SkyeStickers:build:production"
+            },
+            "development": {
+              "browserTarget": "SkyeStickers:build:development"
             }
+
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "SkyeStikers:build"
+            "browserTarget": "SkyeStickers:build"
           }
         },
         "test": {
@@ -114,11 +134,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "SkyeStikers:serve"
+            "devServerTarget": "SkyeStickers:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "SkyeStikers:serve:production"
+              "devServerTarget": "SkyeStickers:serve"
             }
           }
         },
@@ -134,7 +154,7 @@
       }
     }
   },
-  "defaultProject": "SkyeStikers",
+  "defaultProject": "SkyeStickers",
   "schematics": {
     "@schematics/angular:component": {
     }

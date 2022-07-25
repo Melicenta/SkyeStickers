@@ -12,10 +12,14 @@ export class ConversionService {
 
   convert(sticker: Sticker): void {
     const {id, name, background} = sticker
+
     const stringId = id.toString(); // Here we go...
     const node = document.getElementById(stringId); // look the other way, please :)
 
-    node.style.setProperty('background','url('+ background +') no-repeat 1% 68%')
+    if (background){
+      node.style.setProperty('background','url('+ background +') no-repeat 1% 68%')
+    }
+
     domtoimage.toPng(node).then(dataUrl => {
       const img = new Image();
       img.src = dataUrl;

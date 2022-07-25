@@ -9,6 +9,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {StickersComponent} from './stickers/stickers.component';
 import {AddNewFormComponent} from './addNewForm/addNewForm.component';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {AddNewFormComponent} from './addNewForm/addNewForm.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    ColorPickerModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
