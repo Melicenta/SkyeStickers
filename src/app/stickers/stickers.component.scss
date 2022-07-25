@@ -24,6 +24,15 @@
   animation-duration: 5s;
 }
 
+.form {
+  display: flex;
+  align-items: center;
+
+  &--item {
+    padding: 0 4px;
+  }
+}
+
 .form-field-input {
   padding: 2pt;
   margin: 5pt 10pt;
@@ -34,23 +43,19 @@
 
 /*selector*/
 .select {
-  display: inline-table;
-  padding: 0;
-  margin: 0 6px;
-  background-color: transparent;
 
   ul {
     list-style-type: none;
-    display: inline-table;
+    display: flex;
     padding: 0;
     margin: 0;
     box-shadow: 0 0 2px #B5ADBB;
     border-radius: 2px;
+    align-items: baseline;
 
     li {
       padding: 0;
       margin: 0;
-      display: table-cell;
       text-align: center;
 
       a {
@@ -64,6 +69,12 @@
         color: #646464;
         box-shadow: inset 0 0 1px #646464;
         transition: color 0.3s linear;
+      }
+
+      &:last-child {
+        align-self: flex-end;
+        margin-bottom: 6px;
+        margin-right: 12px;
       }
     }
     li.checked {
@@ -83,7 +94,7 @@
 }
 /*buttons*/
 .button {
-  padding: 10px;
+  padding: 3px 6px;
   border-radius: 2px;
   box-shadow: 0 0 3px #967a96;
   cursor: pointer;
@@ -91,6 +102,10 @@
   white-space: nowrap;
   line-height: 27px;
   user-select: none;
+  display: block;
+  text-align: center;
+  height: 30px;
+  min-width: 50px;
 }
 
 /*flex-tables*/
@@ -147,8 +162,9 @@
 }
 
 .sticker {
+  position: relative;
   color: #E20074;
-  background: url(../../img/island.jpg) no-repeat 1% 68%;;
+  //background: url(../../img/island.jpg) no-repeat 1% 68%;
   width: 412px;
   padding: 1em;
   line-height: 57px;
@@ -156,6 +172,25 @@
   text-overflow: initial;
   text-align: center;
   vertical-align: middle;
+
+  &--background {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 512px;
+    max-height: 214px;
+    margin: auto;
+    opacity: 0.6;
+  }
+
+  &--content {
+    position: relative;
+    z-index: 2;
+  }
 }
 
 .flex-table .row-item.small {
@@ -202,5 +237,9 @@
 .ruby{
   background-color: rgba(177, 65, 65, 0.85);
   color: #FD9090;
+}
+
+.text-white {
+  color: #FFFFFF;
 }
 /*colours*/

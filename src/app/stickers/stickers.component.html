@@ -1,17 +1,27 @@
 <div class="p-section">
   <div class="flex-table">
-    <div class="row" *ngFor="let sticker of stickers">
+    <div class="row" *ngFor="let sticker of newStickers">
       <div class="row-item small">
         {{sticker.name}}
       </div>
       <div class="row-item fixed">
-        <div class="sticker" id="{{sticker.id}}">{{sticker.content}}</div>
+        <!--suppress AngularUndefinedBinding -->
+        <div class="sticker" id="{{sticker.id}}"
+             [ngStyle]="{'background': 'url('+ sticker.background +') no-repeat 1% 68%'}">
+<!--          <img class="sticker&#45;&#45;background" src="{{sticker.background}}"/>-->
+          <div class="sticker--content">{{sticker.content}}</div>
+        </div>
       </div>
       <div class="row-item small">
         <div class="select">
           <ul>
             <li class="ruby checked">
-              <a (click)="convert(sticker.id, sticker.name)">Convert</a>
+              <a (click)="convert({
+              id:sticker.id,
+              name:sticker.name,
+              content:sticker.content,
+              background:sticker.background
+              })">Convert</a>
             </li>
           </ul>
         </div>

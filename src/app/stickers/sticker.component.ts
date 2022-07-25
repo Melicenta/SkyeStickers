@@ -1,5 +1,6 @@
 export class Sticker {
-  id: number;
+  id?: number;
   name: string;
   content: string;
+  background: string | ArrayBuffer;
 }

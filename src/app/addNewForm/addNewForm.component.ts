@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Sticker} from '../stickers/sticker.component';
 import {StickerService} from '../sticker.service';
+import {ConversionService} from '../conversion.service';
 
 
 @Component({
@@ -8,24 +9,48 @@ import {StickerService} from '../sticker.service';
   templateUrl: './addNewForm.component.html',
   styleUrls: ['../stickers/stickers.component.scss']
 })
-export class AddNewFormComponent implements OnInit {
-  newStickers: Sticker[];
+
+export class AddNewFormComponent implements OnInit{
+  stickers: Sticker[];
+  sticker: Sticker;
+
+  constructor(private stickerService: StickerService,
+              private conversionService: ConversionService) { }
+
   ngOnInit() {
     this.getStickers();
   }
+
   getStickers(): void {
     this.stickerService.getStickers()
-      .subscribe(newStickers => this.newStickers = newStickers);
+      .subscribe(stickers => this.stickers = stickers);
   }
 
-  constructor(private stickerService: StickerService) { }
-  add(name: string, content: string): void {
-    name = name.trim();
+  add(name: string, content: string, background: string | ArrayBuffer): void {
+    const _name = name.trim();
+
     if (!name) { return; }
-    this.stickerService.addSticker({ name, content } as Sticker)
-      .subscribe(sticker => {
-        this.newStickers.push(sticker);
+    this.stickerService
+      .addSticker({ name:_name, content, background } as Sticker)
+      .subscribe(stickerItem => {
+        this.stickers.push(stickerItem);
       });
+    this.getStickers()
   }
 
+  onFileUpload(event: any):void {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      let res: string | ArrayBuffer = ''
+
+      reader.readAsDataURL(file);
+
+      reader.onloadend = ()=>{
+        res = reader.result
+      }
+  }
+
+  convert(sticker: Sticker): void {
+    this.conversionService.convert(sticker)
+  }
 }

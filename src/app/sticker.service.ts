@@ -25,7 +25,7 @@ export class StickerService {
   getStickers(): Observable<Sticker[]> {
     return this.http.get<Sticker[]>(this.stickersUrl)
       .pipe(
-        tap(_ => console.log('fetched stickers')),
+        tap(_ => console.log('fetched stickers',_)),
         catchError(this.handleError<Sticker[]>('getStickers', []))
       );
   }
@@ -60,7 +60,7 @@ export class StickerService {
       return of([]);
     }
     return this.http.get<Sticker[]>(`${this.stickersUrl}/?name=${term}`).pipe(
-      tap(_ => console.log(`found heroes matching "${term}"`)),
+      tap(_ => console.log(`found stickers matching "${term}"`)),
       catchError(this.handleError<Sticker[]>('searchStickers', []))
     );
   }
@@ -68,9 +68,10 @@ export class StickerService {
   //////// Save methods //////////
 
   addSticker(sticker: Sticker): Observable<Sticker> {
-    return this.http.post<Sticker>(this.stickersUrl, sticker, this.httpOptions).pipe(
-      tap((newSticker: Sticker) => console.log(`added sticker w/ id=${newSticker.id}`)),
-      catchError(this.handleError<Sticker>('addSticker'))
+    return this.http.post<Sticker>(this.stickersUrl, sticker, this.httpOptions)
+      .pipe(
+        tap((newSticker: Sticker) => console.log(`added sticker w/ id=${newSticker.id}`)),
+        catchError(this.handleError<Sticker>('addSticker'))
     );
   }
 
