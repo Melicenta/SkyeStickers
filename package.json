@@ -1,15 +1,15 @@
 {
-  "name": "skye-stikers",
+  "name": "skye-stickers",
   "version": "2.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --configuration development",
-    "start-prod": "ng serve",
+    "start": "ng serve",
+    "start-dev": "ng serve --configuration development",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot"
+    "postinstall": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
