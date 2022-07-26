@@ -41,7 +41,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": true,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -125,7 +124,7 @@
         }
       }
     },
-    "SkyeStikers-e2e": {
+    "SkyeStickers-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
