@@ -124,7 +124,7 @@
         }
       }
     },
-    "SkyeStikers-e2e": {
+    "SkyeStickers-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
