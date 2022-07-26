@@ -6,6 +6,7 @@
     "start": "ng serve",
     "start-dev": "ng serve --configuration development",
     "build": "ng build",
+    "heroku-postbuild": "ng build --aot --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
