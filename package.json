@@ -9,11 +9,10 @@
     "start": "ng serve",
     "start-dev": "ng serve --configuration development",
     "build": "ng build",
-    "heroku-postbuild": "ng build --aot -prod",
+    "heroku-postbuild": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "ng build --aot"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
